@@ -1,0 +1,33 @@
+# ---- Build output () ----
+build/
+out/
+cmake-build-*/
+**/bin/
+**/lib/
+
+# ---- CMake generated files (generated each config, committing them would break the build) ----
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+#       ---- only usef in local terms ----
+compile_commands.json
+
+# ---- obj/binary files ----
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+
+# ---- IDE editor junk ----
+.vscode/
+.idea/
+*.swp
+*~
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
