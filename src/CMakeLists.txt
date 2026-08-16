@@ -8,6 +8,12 @@
 # As storage/ and query/ subdirectories are added later, this will change
 # from a single source file to linking against a "storage" library and a
 # "query" library instead of compiling everything directly here.
+add_subdirectory(storage)
+
 add_executable(pulse
     main.cpp
 )
+
+target_link_libraries(pulse PRIVATE storage)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
