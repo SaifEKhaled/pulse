@@ -1,4 +1,6 @@
 // src/storage/storage_engine.h
+//
+
 
 #pragma once
 
@@ -12,10 +14,9 @@
 
 namespace pulse::storage {
 
-// Result of a write operation. check the rfc 001-storage-api.md for the reasoning (why instead of throwing exceptions)
 struct Result {
     bool ok;
-    std::string error_message;  // empty if ok == true
+    std::string error_message;
 
     static Result success() {
         return Result{true, ""};
@@ -25,16 +26,12 @@ struct Result {
     }
 };
 
-// Abstract interface. A class with only pure virtual functions (the "= 0" ones below) 
-// acts like an enforcer of knowledge on how to pass the Read() and Write() operations
-class StorageEngine { //any storage implementation must provide the 2 operations of write and read
+class StorageEngine {
 public:
     virtual ~StorageEngine() = default;
 
-    // Writes a single point (not a batch as specified)
     virtual Result write(const Point& point) = 0;
 
-    // Reads all points matching the given filters within [start_ts, end_ts]. again. check the rfc 001-storage-api.md for the reasoning
     virtual std::vector<Point> read(
         const std::string& metric,
         const std::optional<std::string>& job_id,
